@@ -1,4 +1,4 @@
-version: '3.8'
+
 services:
   backend:
     build: .
@@ -11,11 +11,11 @@ services:
     restart: unless-stopped
   livekit:
     image: livekit/livekit-server:latest
-    environment:
-      LIVEKIT_API_KEY: ${API_KEY}
-      LIVEKIT_API_SECRET: ${API_SECRET}
-      LIVEKIT_PORT: 7880
+    command: ["--config", "/etc/livekit/livekit.yaml"]
+    volumes:
+      - ./livekitDocker/livekit.yaml:/etc/livekit/livekit.yaml:ro
     ports:
-      - "7880:7880"
-      - "7881:7881"
+      - "7880:7880/tcp"
+      - "7881:7881/tcp"
+      - "50000-50100:50000-50100/udp"
     restart: unless-stopped

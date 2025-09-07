@@ -1,7 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams } from 'expo-router';
-import React, { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useState } from 'react';
+import { Alert, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { requestToken } from '../../src/api/client';
 
 const gifts = [
   { id: 1, name: 'Rose', amount: 1, gif: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2NrbjZrdnJtYm55a3JtaGpoZ3A4d3k4c2s4c2pna2NpejV3eWJvdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c76IJLufpN5wA/giphy.gif' },
@@ -10,6 +11,16 @@ const gifts = [
   { id: 4, name: 'Gold Coin', amount: 10, gif: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2tqN2U5aHB1d2l3Z3hpdWJlb21sYnBsc3l6M3Y4d3ZpZ3NqZ3p2eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6gDWzmAzrpi5DQU8/giphy.gif' },
   { id: 5, name: 'Heart', amount: 5, gif: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2NrbjZrdnJtYm55a3JtaGpoZ3A4d3k4c2s4c2pna2NpejV3eWJvdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c76IJLufpN5wA/giphy.gif' },
 ];
+
+async function joinRoom(identity: string, role: 'publisher' | 'viewer') {
+  try {
+    const token = await requestToken({ roomName: 'demo-room', identity, role });
+    Alert.alert('Token received', token.substring(0, 16) + '...');
+    // TODO: Initialize LiveKit client with token + connect to LIVEKIT_URL if needed
+  } catch (e: any) {
+    Alert.alert('Join failed', e.message);
+  }
+}
 
 const UserScreen = () => {
   const [showGifts, setShowGifts] = useState(false);
@@ -26,8 +37,8 @@ const UserScreen = () => {
             <Text style={styles.followers}>1.2M followers</Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.followButton}>
-          <Text style={styles.followButtonText}>Follow</Text>
+        <TouchableOpacity style={styles.followButton} onPress={() => joinRoom('user-1', 'viewer')}>
+          <Text style={styles.followButtonText}>Join</Text>
         </TouchableOpacity>
       </View>
 
@@ -86,7 +97,7 @@ const StreamerScreen = () => {
             <Text style={styles.followers}>1.2M followers</Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.goLiveButton}>
+        <TouchableOpacity style={styles.goLiveButton} onPress={() => joinRoom('streamer-1', 'publisher')}>
           <Text style={styles.goLiveButtonText}>Go Live</Text>
         </TouchableOpacity>
       </View>

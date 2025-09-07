@@ -1,7 +1,7 @@
 {
   "name": "livekit-backend",
   "version": "1.0.0",
-  "main": "dist/server.js",
+  
   "types": "dist/server.d.ts",
   "scripts": {
     "dev:api": "ts-node-dev --respawn --transpile-only src/server.ts",

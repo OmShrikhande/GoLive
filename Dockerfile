@@ -1,16 +1,33 @@
-# Production Dockerfile for LiveKit Backend
-FROM node:20-alpine as builder
+# --- Build Stage ---
+FROM node:20-alpine AS builder
 WORKDIR /app
+
+# Install deps
 COPY package*.json ./
-RUN npm ci --omit=dev
+RUN npm ci
+
+# Copy all source
 COPY . .
+
+# Compile TypeScript -> dist/
 RUN npm run build
 
-FROM node:20-alpine as runner
+
+# --- Runtime Stage ---
+FROM node:20-alpine AS runner
 WORKDIR /app
-COPY --from=builder /app/dist ./dist
+
+# Copy only necessary runtime files
 COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/.env ./
+
+# Install only production dependencies
 RUN npm ci --omit=dev
-EXPOSE 3001
+
+# Copy compiled app
+COPY --from=builder /app/dist ./dist
+
+# Expose app port
+EXPOSE 4000
+
+# Start the server
 CMD ["node", "dist/server.js"]
