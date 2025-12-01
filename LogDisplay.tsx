@@ -64,7 +64,10 @@ export class LogManager {
   }
 
   private notifyListeners() {
-    this.listeners.forEach((callback) => callback([...this.logs]));
+    if (this.listeners.size === 0) return;
+    setTimeout(() => {
+      this.listeners.forEach((callback) => callback([...this.logs]));
+    }, 0);
   }
 
   getLogs() {
