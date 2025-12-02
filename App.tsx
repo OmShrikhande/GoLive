@@ -15,7 +15,7 @@ import { LogDisplay, LogManager } from "./LogDisplay";
 registerGlobals();
 
 const BACKEND_URL = process.env.Backend_URL || "https://golive-hg5x.onrender.com";
-const LIVEKIT_URL = process.env.LIVEKIT_URL || "ws://194.163.178.69:7880/";
+const LIVEKIT_URL = process.env.LIVEKIT_URL || "wss://194.163.178.69:7880/" ||"ws://194.163.178.69:7880/";
 
 export default function App() {
   const [token, setToken] = useState<string | null>(null);
