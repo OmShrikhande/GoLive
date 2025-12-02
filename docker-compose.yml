@@ -20,6 +20,7 @@ services:
       LIVEKIT_USE_EXTERNAL_IP: "true"
     volumes:
       - "./livekit.yaml:/livekit.yaml:ro"
+      - "/root/certs:/certs:ro"
     networks:
       - livekit-network
 
@@ -31,7 +32,7 @@ services:
     environment:
       LIVEKIT_API_KEY: "devkey"
       LIVEKIT_API_SECRET: "thisisasecretkeythatislongenoughforlivekit"
-      LIVEKIT_URL: "ws://194.163.178.69:7880"
+      LIVEKIT_URL: "wss://194.163.178.69:7880"
       PORT: "3000"
     depends_on:
       - livekit

@@ -9,12 +9,13 @@ import {
   registerGlobals,
 } from "@livekit/react-native";
 import { Track } from "livekit-client";
+import dotenv from "dotenv";
 
 // Must be called before using LiveKit
 registerGlobals();
 
 // ✅ Change this to your backend URL
-const BACKEND_URL = "http://10.0.2.2:3000";
+const BACKEND_URL = "process.env.Backend_URL";
 
  // 👈 use your local IP, not localhost
 
@@ -52,7 +53,7 @@ export default function App() {
   }
 
   return (
-  <LiveKitRoom serverUrl="ws://10.0.2.2:7880/"
+  <LiveKitRoom serverUrl="ws://194.163.178.69:7880/"
     token={token}
     connect={true}
       options={{ adaptiveStream: { pixelDensity: "screen" } }}
