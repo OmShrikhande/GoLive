@@ -15,7 +15,7 @@ import dotenv from "dotenv";
 registerGlobals();
 
 // ✅ Change this to your backend URL
-const BACKEND_URL = "process.env.Backend_URL";
+const BACKEND_URL = process.env.Backend_URL || "https://golive-hg5x.onrender.com";
 
  // 👈 use your local IP, not localhost
 

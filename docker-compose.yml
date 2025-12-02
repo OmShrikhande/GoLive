@@ -11,7 +11,7 @@ services:
       - "3478:3478/udp"
       - "5349:5349"
     environment:
-      LIVEKIT_KEYS: "devkey: thisisasecretkeythatislongenoughforlivekit"
+      LIVEKIT_KEYS: "APIekJdBBnUC3K6: 4W5ow3bWpDLKxHuIWsFkQN5z1Sed1EgJPzDoRPG7Jf5"
       LIVEKIT_BIND: "0.0.0.0"
       LIVEKIT_RTC_PORT_RANGE_START: "52000"
       LIVEKIT_RTC_PORT_RANGE_END: "52100"
@@ -30,8 +30,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      LIVEKIT_API_KEY: "devkey"
-      LIVEKIT_API_SECRET: "thisisasecretkeythatislongenoughforlivekit"
+      LIVEKIT_API_KEY: "APIekJdBBnUC3K6"
+      LIVEKIT_API_SECRET: "4W5ow3bWpDLKxHuIWsFkQN5z1Sed1EgJPzDoRPG7Jf5"
       LIVEKIT_URL: "wss://194.163.178.69:7880"
       PORT: "3000"
     volumes:
