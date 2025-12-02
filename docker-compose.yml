@@ -1,22 +1,43 @@
+version: "3.8"
+
 services:
   livekit:
     image: livekit/livekit-server:latest
-
+    restart: always
     ports:
       - "7880:7880"
       - "7881:7881"
       - "52000-52100:52000-52100/udp"
       - "3478:3478/udp"
       - "5349:5349"
-
     environment:
       LIVEKIT_KEYS: "devkey: thisisasecretkeythatislongenoughforlivekit"
       LIVEKIT_BIND: "0.0.0.0"
       LIVEKIT_RTC_PORT_RANGE_START: "52000"
       LIVEKIT_RTC_PORT_RANGE_END: "52100"
-      LIVEKIT_NODE_IP: "192.168.31.101"
-      LIVEKIT_NAT_1TO1_IPS: "192.168.31.101"
+      LIVEKIT_NODE_IP: "194.163.178.69"
+      LIVEKIT_NAT_1TO1_IPS: "194.163.178.69"
       LIVEKIT_USE_EXTERNAL_IP: "true"
-
     volumes:
-      - "C:/Users/OM/Downloads/livekit/livekit.yaml:/livekit.yaml:ro"
+      - "./livekit.yaml:/livekit.yaml:ro"
+    networks:
+      - livekit-network
+
+  backend:
+    build: ./backend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      LIVEKIT_API_KEY: "devkey"
+      LIVEKIT_API_SECRET: "thisisasecretkeythatislongenoughforlivekit"
+      LIVEKIT_URL: "ws://194.163.178.69:7880"
+      PORT: "3000"
+    depends_on:
+      - livekit
+    networks:
+      - livekit-network
+
+networks:
+  livekit-network:
+    driver: bridge
