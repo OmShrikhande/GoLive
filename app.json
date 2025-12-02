@@ -17,7 +17,11 @@
     "ios": {
       "supportsTablet": true,
       "bitcode": false,
-      "bundleIdentifier": "io.livekit.expoquickstart"
+      "bundleIdentifier": "io.livekit.expoquickstart",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app needs camera access to enable video calls",
+        "NSMicrophoneUsageDescription": "This app needs microphone access to enable audio calls"
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -45,7 +49,7 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "bca63334-2fca-4a08-8f79-4dd35ece68f0"
+        "projectId": "c08ffba5-9bf2-4cda-88cb-2f48fe7b32ba"
       }
     }
   }
