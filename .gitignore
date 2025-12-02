@@ -1,0 +1,119 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# --------------------
+# Node / dependencies
+# --------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --------------------
+# Expo / React Native
+# --------------------
+.expo/
+.expo-shared/
+web-build/
+dist/
+
+# Expo prebuild / native
+android/
+ios/
+android/.gradle/
+android/app/build/
+
+# Android / Gradle
+.gradle/
+build/
+**/build/
+
+# iOS
+ios/Pods/
+ios/build/
+*.xcworkspace
+*.xcuserdata
+*.xcuserstate
+DerivedData/
+
+# --------------------
+# Build artifacts
+# --------------------
+dist/
+out/
+build/
+
+# --------------------
+# Environment & secrets
+# --------------------
+# Ignore env files but keep an example file if present
+.env
+.env.*
+!.env.example
+
+*.jks
+*.p12
+*.key
+*.pem
+*.p8
+*.mobileprovision
+*.keystore
+local.properties
+
+# Mobile service config (often contains secrets)
+android/app/google-services.json
+ios/GoogleService-Info.plist
+
+# --------------------
+# Docker
+# --------------------
+docker-compose.override.yml
+docker-compose.*.yml
+
+# --------------------
+# Logs / runtime files
+# --------------------
+logs/
+*.log
+*.log.*
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+pnpm-debug.log*
+*.pid
+
+# --------------------
+# Test / coverage
+# --------------------
+coverage/
+.nyc_output/
+coverage-final.json
+jest.log
+test-results.xml
+
+# --------------------
+# IDEs / editors
+# --------------------
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+.project
+.settings/
+
+# --------------------
+# OS generated
+# --------------------
+.DS_Store
+Thumbs.db
+
+# --------------------
+# Caches / misc
+# --------------------
+.cache/
+.pnp.*
+.cache-loader/
+
+# TypeScript
+*.tsbuildinfo
+
