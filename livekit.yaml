@@ -13,7 +13,6 @@ turn:
   auth_type: "longterm"
   auth_secret: "openrelayproject"
   realm: "livekit.example"
-
   listen_address: "0.0.0.0:3478"
   tls_address: "0.0.0.0:5349"
 
