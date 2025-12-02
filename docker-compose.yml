@@ -32,7 +32,7 @@ services:
     environment:
       LIVEKIT_API_KEY: "APIekJdBBnUC3K6"
       LIVEKIT_API_SECRET: "4W5ow3bWpDLKxHuIWsFkQN5z1Sed1EgJPzDoRPG7Jf5"
-      LIVEKIT_URL: "wss://194.163.178.69:7880"
+      LIVEKIT_URL: "ws://livekit:7880"
       PORT: "3000"
     volumes:
       - "/root/certs:/certs:ro"
