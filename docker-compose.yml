@@ -34,6 +34,8 @@ services:
       LIVEKIT_API_SECRET: "thisisasecretkeythatislongenoughforlivekit"
       LIVEKIT_URL: "wss://194.163.178.69:7880"
       PORT: "3000"
+    volumes:
+      - "/root/certs:/certs:ro"
     depends_on:
       - livekit
     networks:

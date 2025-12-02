@@ -1,12 +1,14 @@
 import express from "express";
 import cors from "cors";
+import https from "https";
+import fs from "fs";
 import { AccessToken } from "livekit-server-sdk";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const app = express();
-app.use(cors()); // ✅ allow Expo device to request tokens
+app.use(cors());
 
 const createToken = async () => {
   const roomName = "quickstart-room";
@@ -23,7 +25,6 @@ const createToken = async () => {
   );
   at.addGrant({ roomJoin: true, room: roomName });
 
-
   return await at.toJwt();
 };
 
@@ -33,6 +34,11 @@ app.get("/getToken", async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`✅ Token server running on http://${PORT}`);
+const options = {
+  key: fs.readFileSync("/certs/server.key"),
+  cert: fs.readFileSync("/certs/server.crt"),
+};
+
+https.createServer(options, app).listen(PORT, () => {
+  console.log(`✅ Secure Token server running on https://${PORT}`);
 });
