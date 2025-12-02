@@ -31,6 +31,8 @@ app.get("/getToken", async (req, res) => {
   res.send(await createToken());
 });
 
-app.listen(3000, () => {
-  console.log("✅ Token server running on http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`✅ Token server running on http://${PORT}`);
 });
